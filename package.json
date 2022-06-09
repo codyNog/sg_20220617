@@ -27,6 +27,7 @@
     "test:admin": "pnpm --filter=./packages/admin-app/** test",
     "test:service": "pnpm --filter=./packages/service/** test",
     "test:shared": "pnpm --filter=./packages/shared/** test",
+    "test:api": "pnpm --filter=./packages/api/** test",
     "update-dependencies": "ncu -u && ncu -u --packageFile ./packages/api/package.json && ncu -u --packageFile ./packages/service/package.json",
     "update-dependencies-check": "ncu && ncu --packageFile ./packages/api/package.json && ncu -u --packageFile ./packages/service/package.json"
   },

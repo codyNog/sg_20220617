@@ -1,4 +1,4 @@
-import SWR, { SWRConfiguration } from "swr";
+import SWR, { SWRConfiguration, SWRResponse } from "swr";
 
 export const swrConfig: SWRConfiguration = {
   revalidateOnFocus: false,
@@ -9,4 +9,4 @@ export const useSWR = <T>(
   key: string | string[] | null,
   fetcher: () => Promise<T>,
   config?: SWRConfiguration
-) => SWR(key, fetcher, { ...swrConfig, ...config });
+): SWRResponse<T, T> => SWR(key, fetcher, { ...swrConfig, ...config });
