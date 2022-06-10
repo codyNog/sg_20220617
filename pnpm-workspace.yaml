@@ -1,8 +1,5 @@
 packages:
   - "packages/api/**"
   - "packages/shared/**"
-  - "packages/web-app/**"
   - "packages/admin-app/**"
-  - "packages/native-app/**"
   - "packages/web-ui/**"
-  - "packages/native-ui/**"
