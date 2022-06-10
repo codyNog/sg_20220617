@@ -5,7 +5,7 @@ import {
   Category,
   categorySchema,
   categoriesSchema,
-} from "@my/shared/entities/category";
+} from "@my/shared/entities/Category";
 import {
   GetCategoriesQuery,
   getCategoriesQuerySchema,
