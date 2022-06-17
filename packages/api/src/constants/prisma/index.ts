@@ -1,5 +1,5 @@
-const post = {};
+const post = { categories: true };
 
-const user = {};
+const user = { profile: true, posts: { include: post } };
 
 export const prismaIncludeQuery = { post, user };

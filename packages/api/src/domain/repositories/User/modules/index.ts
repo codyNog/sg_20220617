@@ -3,7 +3,15 @@ import { User } from "@my/shared/entities/User";
 import { Prisma } from "@prisma/client";
 
 const createData = (user: User): Prisma.UserUncheckedCreateInput => {
-  return user;
+  const { uid: _, posts, profile, ...rest } = user;
+
+  const input: Prisma.UserUncheckedCreateInput = {
+    ...rest,
+    profile: { create: profile || undefined },
+    posts: { create: posts.map((elem) => elem) },
+  };
+
+  return input;
 };
 
 const getManyWhere = (query: GetUsersQuery): Prisma.UserWhereInput => {
@@ -11,11 +19,19 @@ const getManyWhere = (query: GetUsersQuery): Prisma.UserWhereInput => {
 };
 
 const getWhere = (uid: string): Prisma.UserWhereUniqueInput => {
-  return uid;
+  return { uid };
 };
 
 const updateData = (user: User): Prisma.UserUncheckedUpdateInput => {
-  return user;
+  const { posts, profile, ...rest } = user;
+
+  const input: Prisma.UserUncheckedUpdateInput = {
+    ...rest,
+    profile: { connect: profile || undefined },
+    posts: { connect: posts.map(({ uid }) => ({ uid })) },
+  };
+
+  return input;
 };
 
 export const userImplModules = {

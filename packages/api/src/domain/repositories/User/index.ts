@@ -24,6 +24,8 @@ const get = async (uid: string): Promise<User> => {
   const where = userImplModules.getWhere(uid);
   const user = await prisma.user.findUnique({ include, where });
 
+  if (!user) throw 404;
+
   return user;
 };
 
