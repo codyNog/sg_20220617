@@ -2,13 +2,12 @@ import { GetUsersQuery } from "@my/shared/api/User/queries";
 import { User } from "@my/shared/entities/User";
 import { Prisma } from "@prisma/client";
 
-const createData = (user: User): Prisma.UserUncheckedCreateInput => {
-  const { uid: _, posts, profile, ...rest } = user;
+const createData = (user: User): Prisma.UserCreateInput => {
+  const { uid: _, posts: __, profile, ...rest } = user;
 
-  const input: Prisma.UserUncheckedCreateInput = {
+  const input: Prisma.UserCreateInput = {
     ...rest,
     profile: { create: profile || undefined },
-    posts: { create: posts.map((elem) => elem) },
   };
 
   return input;
@@ -22,10 +21,10 @@ const getWhere = (uid: string): Prisma.UserWhereUniqueInput => {
   return { uid };
 };
 
-const updateData = (user: User): Prisma.UserUncheckedUpdateInput => {
+const updateData = (user: User): Prisma.UserUpdateInput => {
   const { posts, profile, ...rest } = user;
 
-  const input: Prisma.UserUncheckedUpdateInput = {
+  const input: Prisma.UserUpdateInput = {
     ...rest,
     profile: { connect: profile || undefined },
     posts: { connect: posts.map(({ uid }) => ({ uid })) },

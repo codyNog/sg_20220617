@@ -38,7 +38,7 @@ const update = async (user: User): Promise<User> => {
 };
 
 const deleteUser = async (uid: string): Promise<void> => {
-  const where = {};
+  const where = { uid };
   await prisma.user.delete({ where });
 };
 

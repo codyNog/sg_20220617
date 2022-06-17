@@ -2,12 +2,13 @@ import { Prisma } from "@prisma/client";
 import { Post } from "@my/shared/entities/Post";
 import { GetPostsQuery } from "@my/shared/api/Post/queries";
 
-const createData = (post: Post): Prisma.PostUncheckedCreateInput => {
+const createData = (post: Post): Prisma.PostCreateInput => {
   const { uid: _, categories, ...rest } = post;
 
   return {
     ...rest,
     categories: { connect: categories.map(({ uid }) => ({ uid })) },
+    author: { connect: { uid: rest.authorId } },
   };
 };
 
